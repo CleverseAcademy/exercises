@@ -161,8 +161,8 @@
     `prime(n)` returns an array of first `n` prime numbers
 
     ```javascript
-    prime(4); // 2, 3, 5, 7
-    prime(5); // 2, 3, 5, 7, 11
+    prime(4); // [2, 3, 5, 7]
+    prime(5); // [2, 3, 5, 7, 11]
     ```
 
 11. Write a function `drawDown(chart)`
