@@ -266,7 +266,7 @@
 
     `mean(arr)` returns the mean average value of `arr` dataset (represented as an array).
 
-    If `arr` members are of different types, `mean(arr)` returns `null`
+    If any one of `arr` members are of non-`number` type, `mean(arr)` returns `null`
 
     ```javascript
     mean([1, 2, 3]); // 2
@@ -429,7 +429,7 @@
     ```javascript
     const s = "foo bar baz foo foo baz lol lmao";
 
-    countWord(arr);
+    countWord(s);
 
     // {
     //  foo: 3,
@@ -445,7 +445,7 @@
     `unique(arr)` takes in an array of numbers `arr` and returns a new array
     whose elements are unique.
 
-    > You are not allowed to use `Set`.
+    > You are not allowed to use `Set`, but using `isMember` above is allowed.
 
     ```javascript
     const arr = [10, 20, 10, 20, 30, 50, 60, 100];
