@@ -307,21 +307,13 @@ export function periodReturn(amount: number, interest: number): number {
   return amount * (1 + interest);
 }
 
-// For compoundedReturn
-// e.g. 10 => 0.1, and 5 => 0.05
-export function fromPercent(n: number): number {
-  return n / 100;
-}
-
 export function compoundedReturn(
   amount: number,
   interestPercent: number,
   periods: number,
 ): number {
-  const interest = fromPercent(interestPercent);
-
   for (let i = 0; i < periods; i++) {
-    amount = periodReturn(amount, interest);
+    amount = periodReturn(amount, interestPercent / 100);
   }
 
   return amount;
