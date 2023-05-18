@@ -4,7 +4,7 @@ import {
   mutual,
   prime,
   drawDown,
-  //   summarize,
+  summarize,
   //   filterLt,
   //   filterGt,
   //   isMember,
@@ -25,7 +25,7 @@ import {
   //   markdownToHTMLDeclarative,
 } from ".";
 
-describe("fibonacci series", () => {
+describe("fib", () => {
   it("unexpected value", () => {
     [
       // [input, expectedValue]
@@ -100,5 +100,35 @@ describe("drawDown", () => {
     tests.forEach((test) => {
       expect(drawDown(test[0])).toStrictEqual(test[1]);
     });
+  });
+});
+
+describe("summarize", () => {
+  it("short text cut", () => {
+    expect(summarize("Foobar", "... read more at cleverse.com", 6)).toEqual(
+      "Foobar",
+    );
+  });
+
+  it("not obeying len", () => {
+    expect(summarize("some-long-ass-word", " ...", 6)).toBe("");
+  });
+
+  it("not obeying len (due to long trail)", () => {
+    expect(summarize("some-long-ass-word", " ......", 6)).toBe("");
+  });
+
+  it("unexpected value", () => {
+    const s1 =
+      "I am from Cleverse Academy! Today, I’m here to teach you some JavaScript programming";
+    expect(summarize(s1, " ...", 30)).toEqual(
+      "I am from Cleverse Academy! ...",
+    );
+
+    const s2 = "Good morning ladies and gentlemen";
+    expect(summarize(s2, " ...", 2)).toEqual("");
+    expect(summarize(s2, " ...", 10)).toEqual("Good ...");
+    expect(summarize(s2, " ...", 20)).toEqual("Good morning ...");
+    expect(summarize(s2, " ...", 25)).toEqual("Good morning ladies and ...");
   });
 });
