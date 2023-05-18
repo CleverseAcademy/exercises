@@ -17,12 +17,12 @@
     // *****
     ```
 
-2.  Re-write `draw(n)`
+2.  Re-write `drawNg(n)` (-ng suffix is usually used for next-gen)
 
-    This time `draw(n)` prints this pattern:
+    Like `draw(n)`, but this time `drawNg(n)` prints this pattern:
 
     ```javascript
-    draw(5);
+    drawNg(5);
 
     // *
     // **
@@ -47,7 +47,8 @@
 
 4.  Write a function `maxNegMinPosObj(arr)`
 
-    The business logic is identical to `maxNegMinPos` above, but the return value is an object.
+    The business logic is identical to `maxNegMinPos` above, but it returns an object with 2 number fields
+    `maxNeg` and `minPos`.
 
     ```javascript
     const arr = [12, -13, 14, 4, 2, -1, -18];
@@ -55,23 +56,31 @@
     maxNegMinPosObj(arr);
 
     // {
-    //  MaxNeg: -1,
-    //  MinPos: 2,
+    //  maxNeg: -1,
+    //  minPos: 2,
     // }
     ```
 
-5.  Write a function `fib(n)` that prints `n`th sequences of fibonacci series.
+5.  Write a function `fib(n)`
+
+    `fib(n)`returns an array of numbers containing first `n`th element of a fibonacci series.
+
+    The series look like this:
+
+    ```
+    1, 2, 3, 5, 8, 13, 21, ...
+    ```
 
     ```javascript
-    fib(2); // 0 1
+    fib(2); // 2
 
-    fib(3); // 0 1 2
+    fib(3); // 3
 
-    fib(4); // 0 1 2 3
+    fib(4); // 5
 
-    fib(5); // 0 1 2 3 5
+    fib(5); // 8
 
-    fib(6); // 0 1 2 3 5 8
+    fib(6); // 12
     ```
 
 6.  Write a function `mutual(arr1, arr2)`
