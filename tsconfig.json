@@ -1,0 +1,13 @@
+{ 
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2020",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "dist"
+  },
+  // "include": ["src/**/*", "test/entity/datalink/user-group.test.ts"]
+}
