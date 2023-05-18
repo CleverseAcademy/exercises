@@ -240,20 +240,20 @@ export function summarize(text: string, trail: string, len: number) {
   // since we always need it if we had to truncate text
   let summaryLen = 0 + trail.length;
 
-  // Split text to words by whitespaces
+  // Split text into words by whitespaces
   const words = text.split(" ");
 
   for (let i = 0; i < words.length; i++) {
     let word = words[i];
-    const wordLen = word.length;
 
-    // If we add this word, it should not
-    // exceed len, otherwise break the loop.
-    //
     // 1 is the length of whitespace character
     // that we need to add when adding a word
     // for constructing the summary sentence.
-    if (summaryLen + wordLen + 1 > len) {
+    const charsToAdd = word.length + 1;
+
+    // If we add this word, the resulting length
+    // should not exceed len, or we end this loop.
+    if (summaryLen + charsToAdd > len) {
       break;
     }
 
