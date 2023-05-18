@@ -108,7 +108,7 @@ export function maxNegMinPosObj(arr: number[]): {
 }
 
 export function fib(n: number): number | undefined {
-  if (n == 0 || n == 1) {
+  if (n <= 1) {
     return n;
   }
 
