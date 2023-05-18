@@ -178,35 +178,34 @@
     drawDown(chart); // 11
     ```
 
-12. Write a function `summarize(article, maxChars)`
+12. Write a function `summarize(text, trail, len)`
 
-    `summarize(article, maxChars` returns the shortest preview of `article`.
+    `summarize(text, trail, len)` returns the shortest preview of `text`.
 
-    If `article` fits within `maxChars`, then `summarize` returns the whole article.
+    If `text` fits within `len`, then `summarize` returns the whole text.
 
-    If `article` is longer than `maxChars`, then `summarize` will _truncate_ `article`
-    and appends ` ...` (with a whitespace at the front) to the return string.
+    If `text` is longer than `len`, then `summarize` will _truncate_ `text`
+    and appends `trail` (e.g. ` ...` with a whitespace at the front) to the return string.
 
-    > The whole return string must fit into `maxChars`,
-    > i.e. its length must not exceed `maxChars`.
+    > The whole return string must fit into `len`, i.e. its length must not exceed `len`.
 
-    The returned text must contain only whole words (i.e. words are separated by whitespace ` `).
-    Partial words are not allowed.
+    The returned text must contain only whole words (i.e. words are separated
+    by whitespace ` `). Partial words are not allowed.
 
-    If `maxChars` is smaller than 3, and `article` does not fit `maxChars`,
+    If `len` is smaller than 3, and `text` does not fit `len`,
     `summarize` returns an empty string `""`.
 
     ```javascript
     const articleCleverse =
       "I am from Cleverse Academy! Today, I’m here to teach you some JavaScript programming";
 
-    summarize(articleCleverse, 30); // "I am from Cleverse Academy! ..."
+    summarize(articleCleverse, " ...", 30); // "I am from Cleverse Academy! ..."
 
     const articleFoo = "Good morning ladies and gentlemen";
 
-    summarize(articleFoo, 2); // ""
-    summarize(articleFoo, 10); // "Good ..."
-    summarize(articleFoo, 20); // "Good morning ..."
+    summarize(articleFoo, " ...", 2); // ""
+    summarize(articleFoo, " ...", 10); // "Good ..."
+    summarize(articleFoo, " ...", 20); // "Good morning ..."
     ```
 
 13. Write a function `filterLt(n, arr)`
