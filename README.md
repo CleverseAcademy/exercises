@@ -15,7 +15,7 @@ The exercises are divided into the following sections:
 
    Participants should try to use basic programming control flows like
    a `for`-loop and `if` checks as much as possible. `Array.forEach`
-   methods is the only allowed JavaScript's `Array` method in these
+   method is the only allowed JavaScript's `Array` method in these
    exercises.
 
 2. [JavaScript exercises](./js/)
