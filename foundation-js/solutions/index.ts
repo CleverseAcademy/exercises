@@ -107,12 +107,12 @@ export function maxNegMinPosObj(arr: number[]): {
   return { maxNeg, minPos };
 }
 
-export function fib(n: number): number | undefined {
+export function fib(n: number): number {
   if (n <= 1) {
     return n;
   }
 
-  return (fib(n - 1) || 0) + (fib(n - 2) || 0);
+  return fib(n - 1) + fib(n - 2);
 }
 
 // Types that we can check for equality.
