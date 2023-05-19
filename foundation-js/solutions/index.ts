@@ -355,23 +355,34 @@ export function mode(arr: number[]): optionalNumber {
 }
 
 export function mid<T>(arr: T[]): T[] {
-  const l = arr.length;
-  if (l === 1) return [...arr];
+  if (arr.length === 1) return [...arr];
 
-  const _mid = l / 2;
-  if (l / 2 !== 0) {
-    return [arr[_mid]];
+  // Floor the mid index.
+  // In JS, this may be a float!
+  const _mid = Math.floor(arr.length / 2);
+
+  // Even-length arrays will have 2 middle elements
+  if (arr.length % 2 === 0) {
+    return [arr[_mid - 1], arr[_mid]];
   }
 
-  return arr.slice(_mid - 1, _mid);
+  return [arr[_mid]];
 }
 
 export function median(arr: number[]): number {
-  // Copy the array to a
+  // Copy the sorted array (ascending sort) to `a`
   const a = [...arr];
   a.sort((a, b) => a - b);
 
-  return mid(a)[0];
+  const mids = mid(arr);
+
+  // If there're 2 middle elements,
+  // return the average of the two.
+  if (mids.length > 1) {
+    return mean([mids[0], mids[1]]);
+  }
+
+  return mids[0];
 }
 
 export function initArr<T>(val: T, len: number): T[] {

@@ -11,8 +11,8 @@ import {
   compoundedReturn,
   mean,
   mode,
-  //   mid,
-  //   median,
+  mid,
+  median,
   //   avgAge,
   //   mapAge,
   //   flatMap,
@@ -196,6 +196,7 @@ describe("mean", () => {
       [[1, 2, 3, 4, 5], 3],
       [[0, 1, 2], 1],
       [[10, 20], 15],
+      [[9, 10, 12, 13, 13, 13, 15, 15, 16, 16, 18, 22, 23, 24, 24, 25], 16.75],
     ];
 
     tests.forEach((test) => {
@@ -205,17 +206,48 @@ describe("mean", () => {
   });
 });
 
-describe("mean", () => {
+describe("mode", () => {
   const tests: [number[], number | null][] = [
     [[1, 2, 3, 4, 5], null],
     [[0, 1, 2], null],
     [[10, 20, 10], 10],
     [[10, 20, 10, 20], null],
     [[10, 20, 10, 20, 10], 10],
+    [[9, 10, 12, 13, 13, 13, 15, 15, 16, 16, 18, 22, 23, 24, 24, 25], 13],
   ];
 
   tests.forEach((test) => {
     const [arr, expected] = test;
     expect(mode(arr)).toEqual(expected);
+  });
+});
+
+describe("mid", () => {
+  const tests: [number[], number | number[]][] = [
+    [[1, 2, 3, 4, 5], [3]],
+    [[0, 1, 2], [1]],
+    [[10, 20, 10], [20]],
+    [
+      [10, 20, 10, 20],
+      [20, 10],
+    ],
+    [[10, 20, 10, 20, 10], [10]],
+  ];
+
+  tests.forEach((test) => {
+    const [arr, expected] = test;
+    expect(mid(arr)).toEqual(expected);
+  });
+});
+
+describe("median", () => {
+  const tests: [number[], number][] = [
+    [[1, 2, 3, 4, 5], 3],
+    [[10, 20, 21, 69, 112, 354], 45],
+    [[9, 10, 12, 13, 13, 13, 15, 15, 16, 16, 18, 22, 23, 24, 24, 25], 15.5],
+  ];
+  tests.forEach((test) => {
+    const [arr, expected] = test;
+    expect(median(arr)).toEqual(expected);
   });
 });
