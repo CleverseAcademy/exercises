@@ -292,6 +292,8 @@ export function mean(arr: number[]): number {
 
 export function mode(arr: number[]): Optional<number> {
   const dict = new Map<number, number>();
+
+  // Count occurrance frequency into dict
   arr.forEach((elem) => {
     let freq = dict.get(elem) || 0;
     dict.set(elem, freq + 1);
@@ -299,10 +301,13 @@ export function mode(arr: number[]): Optional<number> {
 
   let maxFreq = 0;
   let mode: number | null = null;
+
   dict.forEach((freq, key) => {
-    // We got contesting modes:
-    // more than 1 keys are candidate for mode
     if (freq === maxFreq) {
+      // We got contesting modes:
+      // more than 1 keys are candidate for mode,
+      // reset mode to null
+
       mode = null;
       return;
     }

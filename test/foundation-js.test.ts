@@ -23,7 +23,7 @@ import {
   unique,
   markdownToHTML,
   markdownToHTMLDeclarative,
-} from ".";
+} from "../solutions/foundation-js";
 
 describe("fib", () => {
   it("unexpected value", () => {
