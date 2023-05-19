@@ -449,8 +449,8 @@ export function transposable<T>(arr: T[], w: number, h: number): boolean {
   return arr.length % w === 0 && arr.length % h === 0;
 }
 
-export function unique(arr: number[]): number[] {
-  const answer: number[] = [];
+export function unique(arr: Eq[]): Eq[] {
+  const answer: Eq[] = [];
   arr.forEach((elem) => {
     if (isMember(elem, answer)) {
       return;
@@ -462,35 +462,36 @@ export function unique(arr: number[]): number[] {
   return answer;
 }
 
+// Note: also see function markdownToHTMLDeclarative below
 export function markdownToHTML(md: string): string {
   const lines = md.split("\n");
   const htmls: string[] = new Array();
 
-  lines.forEach((line, i) => {
+  lines.forEach((line) => {
     if (!line.length) {
       return;
     }
 
     if (line.startsWith("####")) {
-      const content = line.split("#### ");
+      const content = line.split("#### ")[1];
       htmls.push(`<h4>${content}</h4>`);
       return;
     }
 
     if (line.startsWith("###")) {
-      const content = line.split("### ");
+      const content = line.split("### ")[1];
       htmls.push(`<h3>${content}</h3>`);
       return;
     }
 
     if (line.startsWith("##")) {
-      const content = line.split("## ");
+      const content = line.split("## ")[1];
       htmls.push(`<h2>${content}</h2>`);
       return;
     }
 
     if (line.startsWith("#")) {
-      const content = line.split("# ");
+      const content = line.split("# ")[1];
       htmls.push(`<h1>${content}</h1>`);
       return;
     }

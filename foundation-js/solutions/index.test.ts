@@ -19,13 +19,10 @@ import {
   transpose,
   transposable,
   flatMap,
-  //   mapMean,
-  //   mapMode,
-  //   mapRevertSign,
-  //   countWord,
-  //   unique,
-  //   markdownToHTML,
-  //   markdownToHTMLDeclarative,
+  mapRevertSign,
+  unique,
+  markdownToHTML,
+  markdownToHTMLDeclarative,
 } from ".";
 
 describe("fib", () => {
@@ -319,6 +316,16 @@ describe("transpose", () => {
           [1, 1],
         ],
       ],
+    ];
+
+    tests.forEach((test) => {
+      const [[w, h, arr], expected] = test;
+      expect(transpose(arr, w, h)).toStrictEqual(expected);
+    });
+  });
+
+  it("missing elems but must retain length", () => {
+    const tests: [[number, number, number[]], Optional<number>[][]][] = [
       [
         [2, 8, [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1]],
         [
@@ -336,7 +343,10 @@ describe("transpose", () => {
 
     tests.forEach((test) => {
       const [[w, h, arr], expected] = test;
-      expect(transpose(arr, w, h)).toStrictEqual(expected);
+      const transposed = transpose(arr, w, h);
+
+      transposed.forEach((line) => expect(line.length).toEqual(w));
+      expect(transposed).toStrictEqual(expected);
     });
   });
 });
@@ -380,5 +390,66 @@ describe("flatMap", () => {
       const [arr, expected] = test;
       expect(flatMap(arr)).toStrictEqual(expected);
     });
+  });
+});
+
+describe("mapRevertSign", () => {
+  it("unexpected value", () => {
+    const tests: [number[], number[]][] = [
+      [
+        [1, 2, -3],
+        [-1, -2, 3],
+      ],
+      [
+        [4, -100.3, 1, -2],
+        [-4, 100.3, -1, 2],
+      ],
+    ];
+
+    tests.forEach((test) => {
+      const [arr, expected] = test;
+      expect(mapRevertSign(arr)).toStrictEqual(expected);
+    });
+  });
+});
+
+describe("unique", () => {
+  const tests: [Eq[], Eq[]][] = [
+    [
+      [1, 1, 1, 2],
+      [1, 2],
+    ],
+    [
+      ["foo", "bar", "baz", "foo"],
+      ["foo", "bar", "baz"],
+    ],
+  ];
+
+  tests.forEach((test) => {
+    const [arr, expected] = test;
+    expect(unique(arr)).toStrictEqual(expected);
+  });
+});
+
+describe("markdownToHTML", () => {
+  const tests: [string, string][] = [
+    [
+      `# Hello
+## ello
+### llo
+#### lo
+o`,
+      `<h1>Hello</h1>
+<h2>ello</h2>
+<h3>llo</h3>
+<h4>lo</h4>
+<p>o</p>`,
+    ],
+  ];
+
+  tests.forEach((test) => {
+    const [md, expected] = test;
+    expect(markdownToHTML(md)).toStrictEqual(expected);
+    expect(markdownToHTMLDeclarative(md)).toStrictEqual(expected);
   });
 });
