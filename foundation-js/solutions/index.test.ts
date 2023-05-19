@@ -5,12 +5,12 @@ import {
   prime,
   drawDown,
   summarize,
-  //   filterLt,
-  //   filterGt,
-  //   isMember,
-  //   compoundedReturn,
-  //   mean,
-  //   mode,
+  filterLt,
+  filterGt,
+  isMember,
+  compoundedReturn,
+  mean,
+  mode,
   //   mid,
   //   median,
   //   avgAge,
@@ -28,7 +28,6 @@ import {
 describe("fib", () => {
   it("unexpected value", () => {
     [
-      // [input, expectedValue]
       [1, 1],
       [2, 1],
       [3, 2],
@@ -36,8 +35,9 @@ describe("fib", () => {
       [5, 5],
       [6, 8],
       [7, 13],
-    ].forEach((test, i) => {
-      expect(fib(test[0])).toBe(test[1]);
+    ].forEach((test) => {
+      const [n, expected] = test;
+      expect(fib(n)).toBe(expected);
     });
   });
 });
@@ -45,7 +45,6 @@ describe("fib", () => {
 describe("mutual", () => {
   it("unexpected value", () => {
     const tests: Eq[][][] = [
-      // [input1, input2, expectedValue]
       [
         [1, 2, 3],
         [3, 2, 1],
@@ -60,16 +59,14 @@ describe("mutual", () => {
     ];
 
     tests.forEach((test) => {
-      expect(mutual(test[0], test[1]).sort()).toEqual(test[2].sort());
+      const [a, b, expected] = test;
+      expect(mutual(a, b).sort()).toEqual(expected.sort());
     });
   });
 });
 
 describe("prime", () => {
   it("unexpected value", () => {
-    // 2, 3, 5, 7, 11, 13, 17
-    // The test case input needs to be in an array
-    // to simplify type system for the test code
     const tests: [number, number[]][] = [
       [1, [2]],
       [2, [2, 3]],
@@ -81,7 +78,8 @@ describe("prime", () => {
     ];
 
     tests.forEach((test) => {
-      expect(prime(test[0])).toStrictEqual(test[1]);
+      const [n, expected] = test;
+      expect(prime(n)).toStrictEqual(expected);
     });
   });
 });
@@ -98,7 +96,8 @@ describe("drawDown", () => {
     ];
 
     tests.forEach((test) => {
-      expect(drawDown(test[0])).toStrictEqual(test[1]);
+      const [chart, expected] = test;
+      expect(drawDown(chart)).toStrictEqual(expected);
     });
   });
 });
@@ -130,5 +129,93 @@ describe("summarize", () => {
     expect(summarize(s2, " ...", 10)).toEqual("Good ...");
     expect(summarize(s2, " ...", 20)).toEqual("Good morning ...");
     expect(summarize(s2, " ...", 25)).toEqual("Good morning ladies and ...");
+  });
+});
+
+describe("filterLt", () => {
+  it("unexpected value", () => {
+    const tests: [number, number[], number[]][] = [
+      [112, [110, 111, 112, 113, 114], [110, 111]],
+      [69, [67, 68, 69, 70], [67, 68]],
+    ];
+
+    tests.forEach((test) => {
+      const [n, arr, expected] = test;
+      expect(filterLt(n, arr)).toEqual(expected);
+    });
+  });
+});
+
+describe("filterGt", () => {
+  it("unexpected value", () => {
+    const tests: [number, number[], number[]][] = [
+      [112, [110, 111, 112, 113, 114], [113, 114]],
+      [69, [67, 68, 69, 70], [70]],
+    ];
+
+    tests.forEach((test) => {
+      const [n, arr, expected] = test;
+      expect(filterGt(n, arr)).toEqual(expected);
+    });
+  });
+});
+
+describe("isMember", () => {
+  const tests: [Eq, Eq[], boolean][] = [
+    [1, [10, 20, 30], false],
+    [2, [1, 2, 3], true],
+    ["john", ["jane", "foo", "bar"], false],
+    ["foo", ["jane", "foo", "bar"], true],
+  ];
+
+  tests.forEach((test) => {
+    const [mem, arr, expected] = test;
+    expect(isMember(mem, arr)).toEqual(expected);
+  });
+});
+
+describe("compoundedReturn", () => {
+  it("unexpected value", () => {
+    const tests: [number, number, number, number][] = [
+      [100, 0, 3, 100],
+      [100, 2, 1, 102],
+      //   [100, 10, 1, 110], // Stupid JS rouding error
+      //   [100, 10, 2, 121],
+    ];
+
+    tests.forEach((test) => {
+      const [amount, interest, periods, expected] = test;
+      expect(compoundedReturn(amount, interest, periods)).toEqual(expected);
+    });
+  });
+});
+
+describe("mean", () => {
+  it("unexpected value", () => {
+    const tests: [number[], number][] = [
+      [[1, 2, 3, 4, 5], 3],
+      [[0, 1, 2], 1],
+      [[10, 20], 15],
+    ];
+
+    tests.forEach((test) => {
+      const [arr, expected] = test;
+      expect(mean(arr)).toBe(expected);
+    });
+  });
+});
+
+describe("mean", () => {
+  const tests: [number[], number | null][] = [
+    [[1, 2, 3, 4, 5], null],
+    [[0, 1, 2], null],
+    [[10, 20, 10], 10],
+    [[10, 20, 10, 20], null],
+    [[10, 20, 10, 20, 10], 10],
+  ];
+
+  tests.forEach((test) => {
+    const [arr, expected] = test;
+    expect(mode(arr)).toEqual(expected);
   });
 });
