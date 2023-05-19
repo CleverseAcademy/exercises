@@ -1,3 +1,10 @@
+export type Optional<T> = T | null;
+
+// Types that we can check for equality.
+// Objects in JavaScript are tested by references
+// so they are not included here.
+export type Eq = number | string;
+
 export function draw(n: number): void {
   // Prevent infinite loop if n < 0
   if (n < 0) return;
@@ -69,44 +76,6 @@ export function maxNegMinPos(arr: number[]): void {
   console.log(`MaxNeg is ${maxNeg}\nMinPos is ${minPos}`);
 }
 
-export function maxNegMinPosObj(arr: number[]): {
-  maxNeg: number | null;
-  minPos: number | null;
-} {
-  // These could be null
-  let maxNeg: number | null = null;
-  let minPos: number | null = null;
-
-  for (let i = 0; i < arr.length; i++) {
-    const elem = arr[i];
-
-    // The outer if-block is for maxNeg
-    if (elem < 0) {
-      if (!maxNeg) {
-        maxNeg = elem;
-        continue;
-      }
-
-      if (elem > maxNeg) {
-        maxNeg = elem;
-        continue;
-      }
-    }
-
-    // If code reaches here, elem is > 0
-    if (!minPos) {
-      minPos = elem;
-      continue;
-    }
-
-    if (elem < minPos) {
-      minPos = elem;
-    }
-  }
-
-  return { maxNeg, minPos };
-}
-
 export function fib(n: number): number {
   if (n <= 1) {
     return n;
@@ -114,11 +83,6 @@ export function fib(n: number): number {
 
   return fib(n - 1) + fib(n - 2);
 }
-
-// Types that we can check for equality.
-// Objects in JavaScript are tested by references
-// so they are not included here.
-export type Eq = number | string;
 
 export function mutual<T extends Eq>(a: T[], b: T[]): T[] {
   // Our empty array to store answer
@@ -326,9 +290,7 @@ export function mean(arr: number[]): number {
   return sum / arr.length;
 }
 
-export type optionalNumber = number | null;
-
-export function mode(arr: number[]): optionalNumber {
+export function mode(arr: number[]): Optional<number> {
   const dict = new Map<number, number>();
   arr.forEach((elem) => {
     let freq = dict.get(elem) || 0;
@@ -389,34 +351,8 @@ export function initArr<T>(val: T, len: number): T[] {
   return new Array(len).fill(val);
 }
 
-export function sumAge(arr: any[]): number {
-  let sum = 0;
-  arr.forEach((elem) => {
-    if (typeof elem.age === "number") {
-      sum += elem.age;
-    }
-  });
-
-  return sum;
-}
-
-export function avgAge(arr: any[]): number {
-  return sumAge(arr) / arr.length;
-}
-
-export function mapAge(arr: any[]): optionalNumber[] {
-  const ages: optionalNumber[] = new Array(arr.length).fill(null);
-  arr.forEach((elem, i) => {
-    if (typeof elem.age === "number") {
-      ages[i] = elem.age;
-    }
-  });
-
-  return ages;
-}
-
 export function flatMap(arr: any[][]): any[] {
-  const flattened = new Array();
+  const flattened: any[] = new Array();
   // elem is also an array
   arr.forEach((elem) => flattened.push(...elem));
 
@@ -430,40 +366,87 @@ export function mapMean(arr: number[][]): number[] {
   return means;
 }
 
-export function mapMode(arr: number[][]): optionalNumber[] {
-  const modes: optionalNumber[] = new Array(arr.length);
+export function mapMode(arr: number[][]): Optional<number>[] {
+  const modes: Optional<number>[] = new Array(arr.length);
   arr.forEach((elem, i) => (modes[i] = mode(elem)));
 
   return modes;
 }
 
-export function countWord(s: string): any {
-  const words = s.split(" ");
-  const answer: any = {};
-  words.forEach((word) => {
-    const freq = answer[word];
-    if (freq) {
-      answer[word] += 1;
-      return;
-    }
-
-    answer[word] = 1;
+export function mapRevertSign(arr: number[]): number[] {
+  const a: number[] = new Array(arr.length);
+  arr.forEach((elem, i) => {
+    a[i] = 0 - elem;
   });
 
-  return answer;
+  return a;
 }
 
-// Same as countWord, but with Map
-export function countWordMap(s: string): any {
-  const words = s.split(" ");
-  const freqs: Map<string, number> = new Map();
+// Don't use `Array.push`, as that will do malloc
+// and can get expensive for large arrays
+export function reverse(arr: number[]): number[] {
+  // Do a malloc once, here
+  const reversed = new Array(arr.length);
 
-  words.forEach((word) => {
-    const freq = freqs.get(word) || 0;
-    freqs.set(word, freq + 1);
-  });
+  for (let i = 0; i < arr.length; i++) {
+    reversed[i] = arr[arr.length - 1 - i];
+  }
 
-  return freqs;
+  return reversed;
+}
+
+export function toBytes(s: string): number[] {
+  // We don't know yet if s contains any non-ASCII char,
+  // so we start with empty an array.
+  const bytes = new Array();
+
+  for (let i = 0; i < s.length; i++) {
+    const char = s.charCodeAt(i);
+    // Filter our any char that does not fit a byte.
+    if (char > 255) {
+      continue;
+    }
+
+    bytes.push(char);
+  }
+
+  return bytes;
+}
+
+export function transpose<T>(arr: T[], w: number, h: number): T[][] {
+  if (w < 1 || h < 1) return [];
+
+  // The 2D array-length will be same as the height
+  // (i.e. the number of lines)
+  const lines: T[][] = new Array(h);
+
+  // The current position in arr
+  let at = 0;
+
+  // Fill each row within the image
+  outer: for (let i = 0; i < h; i++) {
+    const line = new Array(w).fill(null);
+
+    // Fill each column within the line
+    for (let j = 0; j < w; j++) {
+      if (at > arr.length) {
+        break outer;
+      }
+
+      line[j] = arr[at];
+      at += 1;
+    }
+
+    lines[i] = line;
+  }
+
+  return lines;
+}
+
+export function transposable<T>(arr: T[], w: number, h: number): boolean {
+  if (w < 1 || h < 1) return false;
+
+  return arr.length % w === 0 && arr.length % h === 0;
 }
 
 export function unique(arr: number[]): number[] {
