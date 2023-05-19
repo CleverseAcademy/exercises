@@ -1,9 +1,9 @@
-export type Optional<T> = T | null;
-
 // Types that we can check for equality.
 // Objects in JavaScript are tested by references
 // so they are not included here.
 export type Eq = number | string;
+
+export type Optional<T> = T | null | undefined;
 
 export function draw(n: number): void {
   // Prevent infinite loop if n < 0
@@ -384,9 +384,9 @@ export function mapRevertSign(arr: number[]): number[] {
 
 // Don't use `Array.push`, as that will do malloc
 // and can get expensive for large arrays
-export function reverse(arr: number[]): number[] {
+export function reverse<T extends Eq>(arr: T[]): T[] {
   // Do a malloc once, here
-  const reversed = new Array(arr.length);
+  const reversed: T[] = new Array(arr.length);
 
   for (let i = 0; i < arr.length; i++) {
     reversed[i] = arr[arr.length - 1 - i];
@@ -413,7 +413,7 @@ export function toBytes(s: string): number[] {
   return bytes;
 }
 
-export function transpose<T>(arr: T[], w: number, h: number): T[][] {
+export function transpose<T>(arr: T[], w: number, h: number): Optional<T>[][] {
   if (w < 1 || h < 1) return [];
 
   // The 2D array-length will be same as the height

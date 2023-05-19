@@ -1,5 +1,6 @@
 import {
   Eq,
+  Optional,
   fib,
   mutual,
   prime,
@@ -13,11 +14,11 @@ import {
   mode,
   mid,
   median,
-  //   reverse,
-  //   toBytes,
-  //   transpose,
-  //   transposable,
-  //   flatMap,
+  reverse,
+  toBytes,
+  transpose,
+  transposable,
+  flatMap,
   //   mapMean,
   //   mapMode,
   //   mapRevertSign,
@@ -209,47 +210,175 @@ describe("mean", () => {
 });
 
 describe("mode", () => {
-  const tests: [number[], number | null][] = [
-    [[1, 2, 3, 4, 5], null],
-    [[0, 1, 2], null],
-    [[10, 20, 10], 10],
-    [[10, 20, 10, 20], null],
-    [[10, 20, 10, 20, 10], 10],
-    [[9, 10, 12, 13, 13, 13, 15, 15, 16, 16, 18, 22, 23, 24, 24, 25], 13],
-  ];
+  it("unexpected value", () => {
+    const tests: [number[], number | null][] = [
+      [[1, 2, 3, 4, 5], null],
+      [[0, 1, 2], null],
+      [[10, 20, 10], 10],
+      [[10, 20, 10, 20], null],
+      [[10, 20, 10, 20, 10], 10],
+      [[9, 10, 12, 13, 13, 13, 15, 15, 16, 16, 18, 22, 23, 24, 24, 25], 13],
+    ];
 
-  tests.forEach((test) => {
-    const [arr, expected] = test;
-    expect(mode(arr)).toEqual(expected);
+    tests.forEach((test) => {
+      const [arr, expected] = test;
+      expect(mode(arr)).toEqual(expected);
+    });
   });
 });
 
 describe("mid", () => {
-  const tests: [number[], number | number[]][] = [
-    [[1, 2, 3, 4, 5], [3]],
-    [[0, 1, 2], [1]],
-    [[10, 20, 10], [20]],
-    [
-      [10, 20, 10, 20],
-      [20, 10],
-    ],
-    [[10, 20, 10, 20, 10], [10]],
-  ];
+  it("unexpected value", () => {
+    const tests: [number[], number | number[]][] = [
+      [[1, 2, 3, 4, 5], [3]],
+      [[0, 1, 2], [1]],
+      [[10, 20, 10], [20]],
+      [
+        [10, 20, 10, 20],
+        [20, 10],
+      ],
+      [[10, 20, 10, 20, 10], [10]],
+    ];
 
-  tests.forEach((test) => {
-    const [arr, expected] = test;
-    expect(mid(arr)).toEqual(expected);
+    tests.forEach((test) => {
+      const [arr, expected] = test;
+      expect(mid(arr)).toEqual(expected);
+    });
   });
 });
 
 describe("median", () => {
-  const tests: [number[], number][] = [
-    [[1, 2, 3, 4, 5], 3],
-    [[10, 20, 21, 69, 112, 354], 45],
-    [[9, 10, 12, 13, 13, 13, 15, 15, 16, 16, 18, 22, 23, 24, 24, 25], 15.5],
-  ];
-  tests.forEach((test) => {
-    const [arr, expected] = test;
-    expect(median(arr)).toEqual(expected);
+  it("unexpected value", () => {
+    const tests: [number[], number][] = [
+      [[1, 2, 3, 4, 5], 3],
+      [[10, 20, 21, 69, 112, 354], 45],
+      [[9, 10, 12, 13, 13, 13, 15, 15, 16, 16, 18, 22, 23, 24, 24, 25], 15.5],
+    ];
+    tests.forEach((test) => {
+      const [arr, expected] = test;
+      expect(median(arr)).toEqual(expected);
+    });
+  });
+});
+
+describe("reverse", () => {
+  it("unexpected value", () => {
+    const tests: [Eq[], Eq[]][] = [
+      [
+        [1, 2, 3, 4],
+        [4, 3, 2, 1],
+      ],
+      [
+        ["foo", "bar", "baz"],
+        ["baz", "bar", "foo"],
+      ],
+    ];
+
+    tests.forEach((test) => {
+      const [arr, expected] = test;
+      expect(reverse(arr)).toStrictEqual(expected);
+    });
+  });
+});
+
+describe("toBytes", () => {
+  it("unexpected value", () => {
+    const tests: [string, number[]][] = [
+      ["Bar", [66, 97, 114]],
+      ["Foo", [70, 111, 111]],
+      ["Foo🔥", [70, 111, 111]],
+    ];
+
+    tests.forEach((test) => {
+      const [s, expected] = test;
+      expect(toBytes(s)).toStrictEqual(expected);
+    });
+  });
+});
+
+describe("transpose", () => {
+  it("unexpected value", () => {
+    const tests: [[number, number, number[]], Optional<number>[][]][] = [
+      [
+        [8, 2, [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1]],
+        [
+          [1, 0, 1, 0, 0, 0, 0, 0],
+          [1, 0, 1, 0, 1, 1, 1, 1],
+        ],
+      ],
+      [
+        [2, 8, [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1]],
+        [
+          [1, 0],
+          [1, 0],
+          [0, 0],
+          [0, 0],
+          [1, 0],
+          [1, 0],
+          [1, 1],
+          [1, 1],
+        ],
+      ],
+      [
+        [2, 8, [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1]],
+        [
+          [1, 0],
+          [1, 0],
+          [0, 0],
+          [0, 0],
+          [1, 0],
+          [1, 0],
+          [1, 1],
+          [1, undefined],
+        ],
+      ],
+    ];
+
+    tests.forEach((test) => {
+      const [[w, h, arr], expected] = test;
+      expect(transpose(arr, w, h)).toStrictEqual(expected);
+    });
+  });
+});
+
+describe("transposable", () => {
+  it("unexpected value", () => {
+    const tests: [[number[], number, number], boolean][] = [
+      [[[1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1], 8, 2], true],
+      [[[1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1], 8, 1], true],
+      [[[1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1], 2, 8], false],
+    ];
+
+    tests.forEach((test) => {
+      const [[arr, w, h], expected] = test;
+      expect(transposable(arr, w, h)).toEqual(expected);
+    });
+  });
+});
+
+describe("flatMap", () => {
+  it("unexpected value", () => {
+    const tests: [Eq[][], Eq[]][] = [
+      [
+        [
+          [1, 2, 3],
+          [4, 5, 6],
+          [10, 20, 30],
+        ],
+        [1, 2, 3, 4, 5, 6, 10, 20, 30],
+      ],
+      [
+        [
+          ["foo", "bar"],
+          ["2000", "3000"],
+        ],
+        ["foo", "bar", "2000", "3000"],
+      ],
+    ];
+
+    tests.forEach((test) => {
+      const [arr, expected] = test;
+      expect(flatMap(arr)).toStrictEqual(expected);
+    });
   });
 });
