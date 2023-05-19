@@ -14,4 +14,4 @@ The exercises are divided into the following sections:
    A basic TypeScript exercises meant to introduce participants to the
    TypeScript type system.
 
-Optimum solutions will later be added to the repository.
+Optimum solutions will later be added to the repository, but in TypeScript.

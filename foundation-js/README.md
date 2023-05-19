@@ -45,23 +45,7 @@
     // MinPos is 2
     ```
 
-4.  Write a function `maxNegMinPosObj(arr)`
-
-    The business logic is identical to `maxNegMinPos` above, but it returns an object with 2 number fields
-    `maxNeg` and `minPos`.
-
-    ```javascript
-    const arr = [12, -13, 14, 4, 2, -1, -18];
-
-    maxNegMinPosObj(arr);
-
-    // {
-    //  maxNeg: -1,
-    //  minPos: 2,
-    // }
-    ```
-
-5.  Write a function `fib(n)`
+4.  Write a function `fib(n)`
 
     `fib(n)`returns an array of numbers containing first `n`th element of a fibonacci series.
 
@@ -83,7 +67,7 @@
     fib(6); // 12
     ```
 
-6.  Write a function `mutual(arr1, arr2)`
+5.  Write a function `mutual(arr1, arr2)`
 
     `mutual(arr1, arr2)` returns a new array containing all mutual
     members of `arr1` and `arr2`
@@ -95,7 +79,7 @@
     console.log(mutual(class1, class2)); // ["John", "Bob"]
     ```
 
-7.  Write a `fizzBuzz(n)` function
+6.  Write a `fizzBuzz(n)` function
 
     `fizzBuzz(n)` iterates over [inclusive range [1, n]](<https://en.wikipedia.org/wiki/Interval_(mathematics)>),
     and for each element in the range, `fizzBuzz(n)` prints `Fizz` if the element is divisible by 3,
@@ -130,7 +114,7 @@
     // Buzz
     ```
 
-8.  Write a GCD function `gcd(a, b)`
+7.  Write a GCD function `gcd(a, b)`
 
     `gcd(a, b)` returns greatest common divisor (GCD / หรม.) between the pair `a`, `b`
 
@@ -140,7 +124,7 @@
     gcd(3, 2); // 1
     ```
 
-9.  Try learning `Array.sort` method (function) with this snippet:
+8.  Try learning `Array.sort` method (function) with this snippet:
 
     ```javascript
     const arr = [3, 2, 1, 12, 13, 11];
@@ -156,7 +140,7 @@
     After learning the root cause, try fixing this problem/implementing your own
     with a `for` loop.
 
-10. Write a function `prime(n)`
+9.  Write a function `prime(n)`
 
     `prime(n)` returns an array of first `n` prime numbers
 
@@ -165,7 +149,7 @@
     prime(5); // [2, 3, 5, 7, 11]
     ```
 
-11. Write a function `drawDown(chart)`
+10. Write a function `drawDown(chart)`
 
     `drawDown(chart)` returns the biggest downward movement within the chart points
 
@@ -178,7 +162,7 @@
     drawDown(chart); // 11
     ```
 
-12. Write a function `summarize(text, trail, len)`
+11. Write a function `summarize(text, trail, len)`
 
     `summarize(text, trail, len)` returns the shortest preview of `text`.
 
@@ -208,7 +192,7 @@
     summarize(articleFoo, " ...", 20); // "Good morning ..."
     ```
 
-13. Write a function `filterLt(n, arr)`
+12. Write a function `filterLt(n, arr)`
 
     `filterLt(n, arr)` takes in an a number `n` and an array of numbers `arr`,
     and returns a new array containing all elements of `arr` that is lesser than (lt) `n`.
@@ -222,7 +206,7 @@
     filterLt(112, arr) // [111, 101]
     ```
 
-14. Write a function `filterGt(n, arr)`
+13. Write a function `filterGt(n, arr)`
 
     `filterGt(n, arr)` performs similar business logic to `filterLt(n, arr)` above,
     but instead of doing a lesser-than test, it does a greater-than test
@@ -234,7 +218,7 @@
     filterGt(112, arr) // [120, 130, 169]
     ```
 
-15. Write a function `isMember(mem, arr)`
+14. Write a function `isMember(mem, arr)`
 
     `isMember(mem, arr)` returns a boolean indicating whether `mem` is a member of `arr`
 
@@ -245,7 +229,7 @@
     isMember("john", ["jane", "jim", "john"]); // true
     ```
 
-16. Implement a programmable logic to compute compounded return
+15. Implement a programmable logic to compute compounded return
 
     Compounded returns are an investment strategy in which the interest income earned
     from the previous period is also invested into the current period.
@@ -262,7 +246,7 @@
     compoundedReturn(100, 10, 2); // 121
     ```
 
-17. Write a function `mean(arr)`
+16. Write a function `mean(arr)`
 
     `mean(arr)` returns the mean average value of `arr` dataset (represented as an array).
 
@@ -273,7 +257,7 @@
     mean([1, "foo", 3]); // null
     ```
 
-18. Write a function `mode(arr)`
+17. Write a function `mode(arr)`
 
     `mode(arr)` returns the statistical _mode_ from the dataset `arr` (represented as an array).
 
@@ -285,7 +269,7 @@
     mode([2, 5, 2, 4, 5]); // null
     ```
 
-19. Write a function `mid(arr)`
+18. Write a function `mid(arr)`
 
     `mid(arr)` returns the array containing middle element(s) of array `arr`.
 
@@ -297,7 +281,7 @@
     mid([1, 2, 3, 4]); // [2, 3]
     ```
 
-20. Write a function `median(arr)`
+19. Write a function `median(arr)`
 
     `median(arr)` returns the statistical _median_ from the dataset `arr` (represented as an array).
 
@@ -308,7 +292,7 @@
     median([2, 1, 5, 3, 4]); // 3
     ```
 
-21. Write a function `initArr(val, len)`
+20. Write a function `initArr(val, len)`
 
     `initArr(val, len)` returns an array of length `len` with all members initialized to `val`.
 
@@ -316,61 +300,7 @@
     initArr(0, 5); // [0, 0, 0, 0, 0]
     ```
 
-22. Write a function `sumAge(arr)`
-
-    `sumAge(arr)` returns the sum of field `age` of every `arr` member
-    with the field.
-
-    If a member did not have field `age` or `member.age` is [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy),
-    or not a number, the member is skipped.
-
-    ```javascript
-    const arr = [
-      { name: "foo", age: 20 },
-      { name: "bar", id: 2, age: null },
-      { id: 7, age: 3 },
-      { type: "dictionary", keys: ["k", "q"], values: [1, 2] },
-    ];
-
-    sumAge(arr); // 23
-    ```
-
-23. Write a function `avgAge(arr)`
-
-    `avgAge(arr)` works like `sumAge(arr)` above, but instead of summing the age fields,
-    `avgAge(arr)` returns the average of members' `age` fields
-
-    ```javascript
-    const arr = [
-      { name: "foo", age: 20 },
-      { name: "bar", id: 2, age: null },
-      { id: 7, age: 3 },
-      { type: "dictionary", keys: ["k", "q"], values: [1, 2] },
-    ];
-
-    avgAge(arr); // 11.5
-    ```
-
-24. Write a function `mapAge(arr)`
-
-    `mapAge(arr)` takes in an array of objects `arr`, and returns an array of numbers
-    of `arr`'s length, whose element at index `i` maps to the `age` field of `arr[i]`.
-
-    If an `arr` element had [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)
-    `age` field, `null` is used in the return value element.
-
-    ```javascript
-    const arr = [
-      { name: "foo", age: 20 },
-      { name: "bar", id: 2, age: null },
-      { id: 7, age: 3 },
-      { type: "dictionary", keys: ["k", "q"], values: [1, 2] },
-    ];
-
-    mapAge(arr); // [20, null, 3, null]
-    ```
-
-25. Write a function `flatMap(arr)`
+21. Write a function `flatMap(arr)`
 
     `flatMap(arr)` takes in an array of arrays, and returns the flattened array.
 
@@ -384,7 +314,7 @@
     flatMap(arr); // [1, 2, 3, 100, 200, 10, 20]
     ```
 
-26. Write a function `mapMean(arr)`
+22. Write a function `mapMean(arr)`
 
     `mapMean(arr)` takes in an array of arrays, and returns an array of numbers
     whose element at index `i` maps to the mean average value of `arr[i]`.
@@ -401,7 +331,7 @@
     mapMean(arr); // [2, 150, 15]
     ```
 
-27. Write a function `mapMode(arr)`
+23. Write a function `mapMode(arr)`
 
     `mapMode(arr)` takes in an array of arrays, and returns an array of numbers
     whose element at index `i` maps to the statistical mode of `arr[i]`.
@@ -418,29 +348,29 @@
     mapMode(arr); // [1, null, null]
     ```
 
-28. Write a function `countWord(s)`
+24. Write a function `mapRevertSign(arr)`
 
-    `countWord(s)` takes in a string `s` and returns a dictionary object,
-    whose keys are the words in `s`, and value being the frequency the key appears
-    in `s`.
-
-    Words are defined as string of charaters separated by whitespace(s).
+    `mapRevertSign(arr)` takes in an array of numbers, and returns a new array
+    of numbers containing opposite signs of the original array.
 
     ```javascript
-    const s = "foo bar baz foo foo baz lol lmao";
+    const arr = [1, -4, 2, 0];
 
-    countWord(s);
-
-    // {
-    //  foo: 3,
-    //  bar: 1,
-    //  baz: 2,
-    //  lol: 1,
-    //  lmao: 1,
-    // }
+    mapRevertSign(arr); // [-1, 4, -2, 0]
     ```
 
-29. Write a function `unique(arr)`
+25. Write a function `reverse(arr)`
+
+    `reverse(arr)` returns a new array which is `arr` reversed.
+
+    > You are not allowed to use `Array.reverse` method.
+
+    ```javascript
+    const arr = [1, 2, 3, 4, 5];
+    reverse(arr); // [5, 4, 3, 2, 1]
+    ```
+
+26. Write a function `unique(arr)`
 
     `unique(arr)` takes in an array of numbers `arr` and returns a new array
     whose elements are unique.
@@ -451,6 +381,100 @@
     const arr = [10, 20, 10, 20, 30, 50, 60, 100];
 
     unique(arr); // [10, 20, 30, 50, 60, 100]
+    ```
+
+27. Write a function `toBytes(s)`
+
+    `toBytes(s)` takes in a string `s` and returns an array of ASCII bytes.
+    formed by `s`.
+
+    If a character in `s` is invalid ASCII, the character is omitted
+    from the returned array.
+
+    ```javascript
+    const bar = "Bar";
+    const foo = "Foo";
+    const fooFire = "Foo🔥";
+
+    toBytes(bar); // [ 66, 97, 114 ]
+    toBytes(foo); // [ 70, 111, 111 ]
+    toBytes(fooFire); // [ 70, 111, 111 ] because the emoji is invalid ASCII
+    ```
+
+28. Write a function `transpose(bits, w, h)`
+
+    `transpose(bits, w, h)` transposes an array `bits` into arrays of arrays,
+    based on the value of `w`, `h`, and to some extent `bits`.
+
+    For example, consider this scenario:
+    **we are working on a image processing engine**.
+
+    The image files are represented on disks or in memory as just a
+    long list (array) of bytes, much like any files:
+
+    ```javascript
+    // How files are represented on disk as arrays of bits,
+    // and when they are first loaded to memory.
+    [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0];
+    ```
+
+    Now, let's assume that the image file format for our programs are just
+    simple 1-bit [bitmap](https://en.wikipedia.org/wiki/Bitmap) files,
+    that is, each bit represent a pixel, with `0` being a black pixel
+    and `1` being a white one.
+
+    Although our simple app is only limited to processing 1-bit images,
+    the resolution (the width and the height of the image) can vary file by file.
+
+    Without image compression, this means that larger images will have larger files,
+    and thus longer arrays to represent the images.
+
+    Because displays are 2D in nature - to display the bitmap image, we need
+    to do some transposing when rendering images.
+
+    And because the width and height of images may vary,
+    we need a way to map the 1D array into 2D one.
+
+    Implement the function that can performs the following operations:
+
+    ```javascript
+    const imageBytes = [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1];
+    transpose(imageBytes, 8, 2);
+    // [
+    //  [1, 0, 1, 0, 0, 0, 0, 0] // => the 1st row of pixels of imageBytes
+    //  [1, 0, 1, 0, 1, 1, 1, 1] // => the 2nd row of pixels of imageBytes
+    // ]
+
+    transpose(imageBytes, 2, 8); // The same array, but now 2x8
+    // [
+    //  [1, 0] => the 1st row of this rendition of the image
+    //  [1, 0] => the 2nd row
+    //  [0, 0] => the 3rd row
+    //  [0, 0] => the 4th row
+    //  [1, 0] => the 5th row
+    //  [1, 0] => the 6th row
+    //  [1, 1] => the 7th row
+    //  [1, 1] => the 8th row
+    // ]
+    ```
+
+29. Write a function `transposable(arr, w, h)`
+
+    > Related to `transpose(arr, w, h)` above
+
+    `transposable(arr, w, h)` returns a boolean, indicating whether the array `arr`
+    could be transposed with `w` and `h`.
+
+    An array would be transpose with `w` and `h` if the transposed arrays all
+    contains the same length, that is, they can form a rectangle.
+
+    > You are allowed to use `gcd(a, b)` from above.
+
+    ```javascript
+    const image = [1, 0, 1, 0, 1, 1]; // len = 6
+    transposable(image, 2, 3); // true
+    transposable(image, 6, 1); // true
+    transposable(image, 4, 2); // false
     ```
 
 30. Write a function `markdownToHTML(md)`
