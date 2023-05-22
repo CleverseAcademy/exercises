@@ -4,9 +4,6 @@
 
     `draw(n)` takes in a number `n`, and prints the stars (`*`) into the console in this pattern:
 
-    > Hint: Use nested loop, using assignment operator “=+”,
-    > and “\n” which is new line character (read “back-slash-N”)
-
     ```javascript
     draw(5);
 
@@ -18,8 +15,10 @@
     ```
 
 2.  Re-write `drawNg(n)` (-ng suffix is usually used for next-gen)
-
     Like `draw(n)`, but this time `drawNg(n)` prints this pattern:
+
+    > Hint: Use nested loop, using assignment operator “=+”,
+    > and “\n” which is new line character (read “back-slash-N”)
 
     ```javascript
     drawNg(5);
@@ -47,7 +46,7 @@
 
 4.  Write a function `fib(n)`
 
-    `fib(n)`returns an array of numbers containing first `n`th element of a fibonacci series.
+    `fib(n)`returns the `n`th element of a fibonacci series.
 
     The series look like this:
 
