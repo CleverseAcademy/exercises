@@ -95,7 +95,6 @@
     // 3
     // 4
     // Buzz
-    // 5
     // Fizz
     // 7
     // 8
@@ -139,9 +138,14 @@
     After learning the root cause, try fixing this problem/implementing your own
     with a `for` loop.
 
+    > Hint: a _callback_ function can be sent to `Array.sort`
+
 9.  Write a function `prime(n)`
 
     `prime(n)` returns an array of first `n` prime numbers
+
+    > Hint: keep a list of prime numbers, and check subsequent
+    > number iterations against the list.
 
     ```javascript
     prime(4); // [2, 3, 5, 7]
@@ -154,6 +158,8 @@
 
     Where `chart` is points in a chart, represented as an array of numbers:
     `[110, 105, 95, 9, 80, 17, 120, 115, 11]`
+
+    > Hint: you must keep states
 
     ```javascript
     const chart = [110, 105, 95, 9, 80, 17, 120, 115, 11];
@@ -189,6 +195,7 @@
     summarize(articleFoo, " ...", 2); // ""
     summarize(articleFoo, " ...", 10); // "Good ..."
     summarize(articleFoo, " ...", 20); // "Good morning ..."
+    summarize(articleFoo, " ...", 25); // "Good morning ladies ..."
     ```
 
 12. Write a function `filterLt(n, arr)`
@@ -390,6 +397,9 @@
     If a character in `s` is invalid ASCII, the character is omitted
     from the returned array.
 
+    > Hint: JavaScript strings have method `s.charCodeAt(i)` which returns the
+    > ASCII code of the character at index `i` of string `s`
+
     ```javascript
     const bar = "Bar";
     const foo = "Foo";
@@ -467,8 +477,6 @@
     An array would be transpose with `w` and `h` if the transposed arrays all
     contains the same length, that is, they can form a rectangle.
 
-    > You are allowed to use `gcd(a, b)` from above.
-
     ```javascript
     const image = [1, 0, 1, 0, 1, 1]; // len = 6
     transposable(image, 2, 3); // true
@@ -483,6 +491,9 @@
 
     You can just parse the header tags (`<h1>`, `<h2>`, and so on) and the paragraph tag `<p>`
     and ignore the rest of Markdown standard.
+
+    > Hint: JavaScript strings have method `s.startsWith(p)` which returns a boolean
+    > indicating whether `s` is prefixed with `p`
 
     ```javascript
     const md = `
