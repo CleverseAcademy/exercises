@@ -435,11 +435,11 @@
     Although our simple app is only limited to processing 1-bit images,
     the resolution (the width and the height of the image) can vary file by file.
 
-    Without image compression, this means that larger images will have larger files,
-    and thus longer arrays to represent the images.
+    Without image compression, this means that larger images will have larger
+    length (file size).
 
     Because displays are 2D in nature - to display the bitmap image, we need
-    to do some transposing when rendering images.
+    to do some transposing when rendering images to the screens.
 
     And because the width and height of images may vary,
     we need a way to map the 1D array into 2D one.
@@ -450,20 +450,20 @@
     const imageBytes = [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1];
     transpose(imageBytes, 8, 2);
     // [
-    //  [1, 0, 1, 0, 0, 0, 0, 0] // => the 1st row of pixels of imageBytes
-    //  [1, 0, 1, 0, 1, 1, 1, 1] // => the 2nd row of pixels of imageBytes
+    //  [1, 0, 1, 0, 0, 0, 0, 0], // => the 1st row of pixels of imageBytes
+    //  [1, 0, 1, 0, 1, 1, 1, 1], // => the 2nd row of pixels of imageBytes
     // ]
 
     transpose(imageBytes, 2, 8); // The same array, but now 2x8
     // [
-    //  [1, 0] => the 1st row of this rendition of the image
-    //  [1, 0] => the 2nd row
-    //  [0, 0] => the 3rd row
-    //  [0, 0] => the 4th row
-    //  [1, 0] => the 5th row
-    //  [1, 0] => the 6th row
-    //  [1, 1] => the 7th row
-    //  [1, 1] => the 8th row
+    //  [1, 0], => the 1st row of this rendition of the image
+    //  [1, 0], => the 2nd row
+    //  [0, 0], => the 3rd row
+    //  [0, 0], => the 4th row
+    //  [1, 0], => the 5th row
+    //  [1, 0], => the 6th row
+    //  [1, 1], => the 7th row
+    //  [1, 1], => the 8th row
     // ]
     ```
 
