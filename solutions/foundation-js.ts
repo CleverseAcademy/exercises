@@ -138,27 +138,33 @@ export function prime(n: number): number[] {
 
   // Initialize our answers with 2
   const primes: number[] = [2];
+  // Start at 3
+  let at = 3;
 
-  for (let i = 3; ; i++) {
-    if (primes.length === n) {
-      break;
-    }
-
-    // Assume i is prime number
+  while (primes.length < n) {
+    // Assume `at` is prime number
     // until we can prove otherwise
     let isPrime = true;
 
+    // Prove that `at` is indivisible by
+    // **all** members of `primes`
     for (let j = 0; j < primes.length; j++) {
       const p = primes[j];
 
-      // i is divisible by p, discard i
-      if (i % p === 0) {
+      // `at` is divisible by p, discard `at`
+      // by flagging isPrime as false and
+      // break the for-loop
+      if (at % p === 0) {
         isPrime = false;
         break;
       }
     }
 
-    if (isPrime) primes.push(i);
+    // Push to `primes`
+    if (isPrime) primes.push(at);
+
+    // Increment `at`
+    at++;
   }
 
   return primes;
