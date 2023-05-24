@@ -197,18 +197,18 @@ export function summarize(text: string, trail: string, len: number) {
   // with trail and still be smaller than len anyway.
   if (trail.length >= len) return "";
 
-  // Initialize our summaryWords
+  // Initialize our summaryWords as array of words
   const summaryWords: string[] = [];
 
-  // summaryLen always include trailing string length,
-  // since we always need it if we had to truncate text
-  let summaryLen = 0 + trail.length;
+  // summaryLen always include trail length,
+  // since we always need `trail` appended to the summary
+  let summaryLen = trail.length;
 
   // Split text into words by whitespaces
-  const words = text.split(" ");
+  const textWords = text.split(" ");
 
-  for (let i = 0; i < words.length; i++) {
-    let word = words[i];
+  for (let i = 0; i < textWords.length; i++) {
+    let word = textWords[i];
 
     // 1 is the length of whitespace character
     // that we need to add when adding a word
@@ -216,13 +216,17 @@ export function summarize(text: string, trail: string, len: number) {
     const charsToAdd = word.length + 1;
 
     // If we add this word, the resulting length
-    // should not exceed len, or we end this loop.
-    if (summaryLen + charsToAdd > len) {
+    // should not exceed len, or we break this loop.
+    //
+    // The -1 is for the last word added, which does
+    // not have a whitespace separater but is instead
+    // joined directly with `trail`.
+    if (summaryLen + charsToAdd - 1 > len) {
       break;
     }
 
     summaryWords.push(word);
-    summaryLen += word.length;
+    summaryLen += charsToAdd;
   }
 
   if (summaryWords.length === 0) {
@@ -407,7 +411,8 @@ export function toBytes(s: string): number[] {
 
   for (let i = 0; i < s.length; i++) {
     const char = s.charCodeAt(i);
-    // Filter our any char that does not fit a byte.
+    // Skip any char that does not fit a byte.
+    // All ASCII characters fit in a byte (8 bits, 0-255).
     if (char > 255) {
       continue;
     }

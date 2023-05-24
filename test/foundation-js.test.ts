@@ -120,15 +120,19 @@ describe("summarize", () => {
   it("unexpected value", () => {
     const s1 =
       "I am from Cleverse Academy! Today, I’m here to teach you some JavaScript programming";
-    expect(summarize(s1, " ...", 30)).toEqual(
-      "I am from Cleverse Academy! ...",
+    expect(summarize(s1, " ...", 30)).toEqual("I am from Cleverse ...");
+    expect(summarize(s1, " ...", 50)).toEqual(
+      "I am from Cleverse Academy! Today, I’m here to ...",
+    );
+    expect(summarize(s1, " ...", 65)).toEqual(
+      "I am from Cleverse Academy! Today, I’m here to teach you some ...",
     );
 
     const s2 = "Good morning ladies and gentlemen";
     expect(summarize(s2, " ...", 2)).toEqual("");
     expect(summarize(s2, " ...", 10)).toEqual("Good ...");
     expect(summarize(s2, " ...", 20)).toEqual("Good morning ...");
-    expect(summarize(s2, " ...", 25)).toEqual("Good morning ladies and ...");
+    expect(summarize(s2, " ...", 25)).toEqual("Good morning ladies ...");
   });
 });
 
