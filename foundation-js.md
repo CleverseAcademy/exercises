@@ -164,7 +164,7 @@
     ```javascript
     const chart = [110, 105, 95, 9, 80, 17, 120, 115, 11];
 
-    drawDown(chart); // 11
+    drawDown(chart); // 109
     ```
 
 11. Write a function `summarize(text, trail, len)`
