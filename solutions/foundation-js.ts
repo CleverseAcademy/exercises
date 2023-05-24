@@ -520,7 +520,7 @@ export function markdownToHTML(md: string): string {
 
 // More programmable
 export function markdownToHTMLDeclarative(md: string): string {
-  const headerMapping: string[][] = [
+  const headerMapping: [string, string][] = [
     ["#### ", "h4"],
     ["### ", "h3"],
     ["## ", "h2"],
