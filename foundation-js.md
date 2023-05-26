@@ -1,6 +1,6 @@
 # Foundation JavaScript exercises
 
-1.  Writes a function `draw(n)`
+1.  Write a function `draw(n)`
 
     `draw(n)` takes in a number `n`, and prints the stars (`*`) into the console in this pattern:
 
@@ -14,7 +14,7 @@
     // *****
     ```
 
-2.  Re-write `drawNg(n)` (-ng suffix is usually used for next-gen)
+2.  Re-write `draw(n)` as `drawNg(n)` (-ng suffix is usually used for next-gen)
     Like `draw(n)`, but this time `drawNg(n)` prints this pattern:
 
     > Hint: Use nested loop, using assignment operator “=+”,
@@ -472,10 +472,8 @@
     > Related to `transpose(arr, w, h)` above
 
     `transposable(arr, w, h)` returns a boolean, indicating whether the array `arr`
-    could be transposed with `w` and `h`.
-
-    An array would be transpose with `w` and `h` if the transposed arrays all
-    contains the same length, that is, they can form a rectangle.
+    could be transposed with `w` and `h`. It is considered transposable if the
+    resulting 2D array can form a rectangle (all rows have uniform length).
 
     ```javascript
     const image = [1, 0, 1, 0, 1, 1]; // len = 6
