@@ -41,6 +41,15 @@ export function drawNg(n: number): void {
   }
 }
 
+// pong's version: exercise 2
+export function drawNgPong(n: number): void {
+  let s = "";
+  for (let i = 1; i <= n; i++) {
+    s += "*";
+    console.log(s);
+  }
+}
+
 export function maxNegMinPos(arr: number[]): void {
   // These could be null
   let maxNeg: number | null = null;
@@ -284,7 +293,7 @@ export function periodReturn(amount: number, interest: number): number {
 export function compoundedReturn(
   amount: number,
   interestPercent: number,
-  periods: number,
+  periods: number
 ): number {
   for (let i = 0; i < periods; i++) {
     amount = periodReturn(amount, interestPercent / 100);
@@ -344,6 +353,17 @@ export function mid<T>(arr: T[]): T[] {
   }
 
   return [arr[_mid]];
+}
+
+// pong's version: exercise 18
+export function midPong(arr: number[]): number[] {
+  const midValue: number[] = [];
+  if (arr.length % 2 !== 0) {
+    midValue.push(arr[(arr.length - 1) / 2]);
+  } else {
+    midValue.push(arr[arr.length / 2 - 1], arr[arr.length / 2]);
+  }
+  return midValue;
 }
 
 export function median(arr: number[]): number {
@@ -457,6 +477,23 @@ export function transpose<T>(arr: T[], w: number, h: number): Optional<T>[][] {
   }
 
   return lines;
+}
+
+// pong's version: exercise 28
+export function transposePong(
+  bits: number[],
+  w: number,
+  h: number
+): number[][] {
+  const transArr: number[][] = [];
+  for (let i = 0; i < h; i++) {
+    let row: number[] = [];
+    for (let j = 0; j < w; j++) {
+      row.push(bits[i * w + j]);
+    }
+    transArr.push(row);
+  }
+  return transArr;
 }
 
 export function transposable<T>(arr: T[], w: number, h: number): boolean {
