@@ -8,26 +8,8 @@ on:
     branches: ["main"]
 
 jobs:
-  checkout:
-    name: Checkout
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: Checkout branch commits
-        uses: actions/checkout@v2
-
-  lint:
-    name: Lint GitHub Action
-    needs: checkout
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: Lint GitHub Actions YAML file(s)
-        uses: cschleiden/actions-linter@v1
-        with:
-          workflows: '[".github/workflows/*.yaml"]'
-
   build:
     name: Build and test on multiple platforms
-    needs: checkout
     strategy:
       matrix:
         # Test on Node.js v19, v20, and also on Ubuntu, macOS, and Windows
@@ -35,6 +17,12 @@ jobs:
         os: ["ubuntu-latest", "macos-latest", "windows-latest"]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Checkout branch commits
+        uses: actions/checkout@v2
+      - name: Lint GitHub Actions YAML file(s)
+        uses: cschleiden/actions-linter@v1
+        with:
+          workflows: '[".github/workflows/*.yaml"]'
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -43,5 +31,5 @@ jobs:
         uses: pnpm/action-setup@v2
       - name: Install npm packages with pnpm
         run: pnpm install
-      - name: Run Jest tests
+      - name: Run Jest tests with `pnpm test`
         run: pnpm test
