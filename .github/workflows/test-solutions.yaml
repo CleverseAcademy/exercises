@@ -9,12 +9,15 @@ on:
 
 jobs:
   checkout:
+    name: Checkout
     runs-on: "ubuntu-latest"
     steps:
       - name: Checkout branch commits
         uses: actions/checkout@v2
 
   lint:
+    name: Lint GitHub Action
+    needs: checkout
     runs-on: "ubuntu-latest"
     steps:
       - name: Lint GitHub Actions YAML file(s)
@@ -24,6 +27,7 @@ jobs:
 
   build:
     name: Build and test on multiple platforms
+    needs: checkout
     strategy:
       matrix:
         # Test on Node.js v19, v20, and also on Ubuntu, macOS, and Windows
