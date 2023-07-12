@@ -14,11 +14,11 @@ jobs:
       matrix:
         # Test on Node.js v19, v20, and also on Ubuntu, macOS, and Windows
         nodejs: [19, 20]
-        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-      - uses: cschleiden/actions-linter@v1
+      - uses: cschleiden/actions-linter@v2
         with:
           workflows: '[".github/workflows/*.yaml"]'
 
