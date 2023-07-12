@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-      - uses: cschleiden/actions-linter@v2
+      - uses: cschleiden/actions-linter@v1
         with:
           workflows: '[".github/workflows/*.yaml"]'
 
