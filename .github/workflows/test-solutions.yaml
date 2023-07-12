@@ -35,6 +35,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.nodejs }}
-
-      - run: npm install # We used pnpm so we did not have package-lock.json for `npm ci`
-      - run: npm run test # No need to build before test - jest.config.js handles that
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+      - name: Install npm packages with pnpm
+        run: pnpm install
+      - name: Run Jest tests
+        run: pnpm test
