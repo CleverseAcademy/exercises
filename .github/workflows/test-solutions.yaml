@@ -24,6 +24,8 @@ jobs:
           node-version: ${{ matrix.nodejs }}
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
+        with:
+          version: latest
       - name: Install npm packages with pnpm
         run: pnpm install
       - name: Run Jest tests with `pnpm test`
