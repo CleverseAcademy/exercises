@@ -9,13 +9,18 @@ on:
 
 jobs:
   checkout:
-    uses: actions/checkout@v2
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout branch commits
+        uses: actions/checkout@v2
 
   lint:
-    name: Lint GitHub Actions YAML file(s)
-    uses: cschleiden/actions-linter@v1
-    with:
-      workflows: '[".github/workflows/*.yaml"]'
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Lint GitHub Actions YAML file(s)
+        uses: cschleiden/actions-linter@v1
+        with:
+          workflows: '[".github/workflows/*.yaml"]'
 
   build:
     name: Build and test on multiple platforms
@@ -26,7 +31,8 @@ jobs:
         os: ["ubuntu-latest", "macos-latest", "windows-latest"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.nodejs }}
 
